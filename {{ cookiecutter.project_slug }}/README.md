@@ -1,7 +1,5 @@
 # {{ cookiecutter.project_name }}
 
-Simple template to write Gtkmm applications using CMake and Glade
-
 ## Requirements
 * [Cookiecutter](https://github.com/cookiecutter/cookiecutter)
 * gtkmm-4.0
@@ -40,4 +38,4 @@ sudo ./uninstall.sh
 ```
 
 ## References
-Most parts used in the source code are copied from the GNOME Developer Guide [Programming with gtkmm3](https://developer.gnome.org/gtkmm-tutorial/stable/ "Programming with gtkmm3"), especially chapter [Building applications](https://developer.gnome.org/gtkmm-tutorial/stable/chapter-building-applications.html.en "Building applications").
+Most parts used in the source code are copied from the GNOME Developer Guide [Programming with gtkmm4](https://gnome.pages.gitlab.gnome.org/gtkmm-documentation/ "Programming with gtkmm4"), especially chapter [Building applications](https://gnome.pages.gitlab.gnome.org/gtkmm-documentation/chapter-building-applications.html "Building applications").

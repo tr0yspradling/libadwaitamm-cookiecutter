@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
 set(CMAKE_CXX_STANDARD 17)
-find_package(PkgConfig REQUIRED)
 
 project({{ cookiecutter.pkg_name }} VERSION 1.0)
 
@@ -18,10 +17,10 @@ set(SOURCES_DIR ${GENERATED_FILES_DIR}/src)
 list(INSERT CMAKE_MODULE_PATH 0 ${PROJECT_SOURCE_DIR}/cmake)
 include(GlibUtils)
 include(GlibCompileSchemas)
-include(FindGTKMM)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-4.0)
 pkg_check_modules(libadwaitamm REQUIRED IMPORTED_TARGET libadwaitamm-1)
-pkg_check_modules(libpanel REQUIRED IMPORTED_TARGET libpanel-1)
 
 configure_file(cmake/projectdefinitions.h.in ${GENERATED_INCLUDE_DIR}/projectdefinitions.h)
 
@@ -41,17 +40,15 @@ add_executable(
 
 target_include_directories(
     ${PROJECT_NAME} PRIVATE
-    ${INCLUDE_DIR}
-    ${GENERATED_INCLUDE_DIR}
     ${DEPENDENCIES_INCLUDE_DIR}
-    ${libadwaitamm_INCLUDE_DIRS}
-    ${libpanel_INCLUDE_DIRS}
+    ${GENERATED_INCLUDE_DIR}
+    ${INCLUDE_DIR}
 )
 
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
-    GTKMM
+    PkgConfig::GTKMM
     PkgConfig::libadwaitamm
 )
 
