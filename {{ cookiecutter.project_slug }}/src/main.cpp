@@ -6,6 +6,9 @@
 
 int main(int argc, char **argv) {
     Glib::setenv("GSETTINGS_SCHEMA_DIR", projectdefinitions::getGeneratedDataDirectory(), false);
+
+    Adw::init();
+
     auto app = Application::create();
     return app->run(argc, argv);
 }

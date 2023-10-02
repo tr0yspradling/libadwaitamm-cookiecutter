@@ -44,7 +44,6 @@ void Window::setHeaderBar() {
     if (!headerBar) {
         throw std::runtime_error("No \"headerBar\" object in headerbar.xml");
     } else {
-        // headerBar->set_title(projectdefinitions::getProjectName());
         set_titlebar(*headerBar);
     }
 }
