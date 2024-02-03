@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gtkmm.h>
+#include "projectdefinitions.h"
 
 #if 0
 
@@ -134,8 +135,9 @@ public:
       : widget_class(widget_class_) {}
 
   void set_resource(const Glib::ustring &resource_name) {
+    auto resource_path = projectdefinitions::getPrefixedPath(resource_name);
     gtk_widget_class_set_template_from_resource(widget_class,
-                                                resource_name.c_str());
+                                                resource_path.c_str());
   }
 
   void bind_widget(const Glib::ustring &widget_name) {

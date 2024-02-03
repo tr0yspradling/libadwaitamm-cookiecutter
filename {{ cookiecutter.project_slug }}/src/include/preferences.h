@@ -10,12 +10,16 @@
 #include <libadwaitamm/private/preferenceswindow_p.h>
 #include "templatewidget.h"
 
+
 class PreferencesWindow : public Gtk::TemplateWidget<PreferencesWindow, Adw::PreferencesWindow> {
 
-protected:
-    explicit Preferences(GtkWidget *cobject) : TemplateWidgetBase(obj) {}
 public:
     static PreferencesWindow *create();
+
+
+protected:
+    explicit PreferencesWindow(GtkWidget *cobject) : TemplateWidgetBase(cobject) {}
+
 
 private:
     static const char class_name[];

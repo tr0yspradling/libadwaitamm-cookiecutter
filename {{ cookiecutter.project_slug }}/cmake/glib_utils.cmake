@@ -1,7 +1,7 @@
 macro(compile_resources OUTPUT)
     find_program(GLIB_RESOURCE_COMPILER NAMES glib-compile-resources REQUIRED)
 
-    set(GRESOURCE_FILE ${DATA_DIR}/${PROJECT_NAME}.gresource.xml)
+    set(GRESOURCE_FILE ${GENERATED_DATA_DIR}/${PROJECT_NAME}.gresource.xml)
     set(WORK_DIR ${PROJECT_SOURCE_DIR}/data)
 
     if(${ARGC} GREATER 1)
@@ -32,7 +32,7 @@ macro(compile_schemas GSCHEMA_XML)
         endforeach()
     endif()
 
-    set(OUTPUT_DIR ${PROJECT_BINARY_DIR}/generated/data)
+    set(OUTPUT_DIR ${GENERATED_DATA_DIR})
     set(OUTPUT ${OUTPUT_DIR}/gschemas.compiled)
     add_custom_command(
         OUTPUT ${OUTPUT}
@@ -42,6 +42,6 @@ macro(compile_schemas GSCHEMA_XML)
         COMMAND ${GLIB_SCHEMA_COMPILER} --schema-file=${GSCHEMA_XML} --targetdir=${OUTPUT_DIR}
         DEPENDS ${GSCHEMA_XML} ${SCHEMAS}
         COMMENT "Generating ${OUTPUT}..."
-        )
+    )
     add_custom_target(gschemas.compiled ALL DEPENDS ${OUTPUT})
 endmacro()

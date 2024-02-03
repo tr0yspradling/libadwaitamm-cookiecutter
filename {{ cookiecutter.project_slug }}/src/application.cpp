@@ -1,3 +1,4 @@
+#include <iostream>
 #include "application.h"
 
 Application::Application()
@@ -56,7 +57,7 @@ void Application::on_hide_window(Gtk::Window *window) {
 
 void Application::on_action_preferences() {
     try {
-        auto prefsDialog = Preferences::create(*get_active_window());
+        auto prefsDialog = PreferencesWindow::create();
         prefsDialog->present();
         // prefsDialog->signal_hide().connect(sigc::bind(sigc::mem_fun(*this, &Application::on_hide_window), prefsDialog));
     } catch (const Glib::Error &ex) {

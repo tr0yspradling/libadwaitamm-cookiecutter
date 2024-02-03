@@ -2,6 +2,7 @@
 #define CONFIG_H_IN
 
 #include <string>
+#include <glibmm/ustring.h>
 
 namespace projectdefinitions {
     static std::string getProjectName() {
@@ -28,8 +29,8 @@ namespace projectdefinitions {
         return "@DATA_DIR@";
     }
 
-    static std::string getResourcePath(std::string& resource) {
-        return getApplicationPrefix() + resource;
+    static Glib::ustring getPrefixedPath(const Glib::ustring& resource) {
+        return Glib::ustring(getApplicationPrefix()) += resource;
     }
 }
 
