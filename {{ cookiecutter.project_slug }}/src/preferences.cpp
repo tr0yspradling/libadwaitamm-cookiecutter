@@ -14,7 +14,7 @@ PreferencesWindow* PreferencesWindow::create() {
   return wrap(obj);
 }
 
-void init_widget(Gtk::TemplateWidgetInit &i) {
+void PreferencesWindow::init_widget(Gtk::TemplateWidgetInit &i) {
   i.init_template();
 	/*
 	  s.bind_widget("subpage2");

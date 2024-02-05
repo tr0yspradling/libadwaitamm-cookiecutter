@@ -9,8 +9,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Wshadow -Wnarrowing -Wold-style-cast -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wnull-dereference -Wunused -Woverloaded-virtual -Wformat=2 -Wconversion -Wsign-conversion -Wdouble-promotion -Wmisleading-indentation -Winfinite-recursion")
 
 # C++23 features
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
-include_directories("/usr/include/c++/v1")
+# TODO: Fix building with LLVM libc++
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+#include_directories("/usr/include/c++/v1")
 
 # variables
 set(APPLICATION_ID "{{ cookiecutter.pkg_name }}")
