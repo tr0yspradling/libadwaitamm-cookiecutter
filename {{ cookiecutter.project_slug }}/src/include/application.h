@@ -2,21 +2,18 @@
 #define APPLICATION_H
 
 #include <libadwaitamm/application.h>
-#include <libadwaitamm/init.h>
 #include "preferences.h"
 #include "projectdefinitions.h"
 #include "window.h"
 
-class Application : public Adw::Application {
+class Application final : public Adw::Application {
 public:
     static Glib::RefPtr<Application> create();
 
     ~Application() override = default;
 
-private:
     Application();
-
-    Glib::RefPtr<Window> create_window();
+private:
 
     void on_activate() override;
 

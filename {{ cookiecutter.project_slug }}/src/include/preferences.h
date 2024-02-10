@@ -13,17 +13,17 @@
 class PreferencesWindow final : public Gtk::TemplateWidget<PreferencesWindow, Adw::PreferencesWindow> {
 
 public:
-    static PreferencesWindow *create();
+    static PreferencesWindow* create();
 
 
 protected:
-    explicit PreferencesWindow(GtkWidget *cobject) : TemplateWidgetBase(cobject) {}
+    explicit PreferencesWindow(GtkWidget* cobject) : TemplateWidgetBase(cobject) {}
 
 
 private:
     static const char class_name[];
-    static void setup_template(Gtk::TemplateWidgetSetup &s);
-    void init_widget(Gtk::TemplateWidgetInit &i);
+    static void setup_template(Gtk::TemplateWidgetSetup& s);
+    void init_widget(Gtk::TemplateWidgetInit& i);
 
     Glib::RefPtr<Gio::Settings> settings;
 

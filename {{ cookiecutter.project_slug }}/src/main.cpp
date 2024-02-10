@@ -2,6 +2,7 @@
 #include <glibmm.h>
 
 #include "application.h"
+#include <libadwaitamm/init.h>
 #include "projectdefinitions.h"
 
 int main(int argc, char **argv) {

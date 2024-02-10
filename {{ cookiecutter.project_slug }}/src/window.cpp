@@ -25,36 +25,47 @@
 
 const char Window::class_name[] = "Window";
 
-Glib::RefPtr<Window> Window::create(const Glib::RefPtr<Adw::Application> &application) {
-    const Glib::ConstructParams params(type_class_.init(), "application",
+Window* Window::create(const Glib::RefPtr<Adw::Application>& application) {
+    Glib::ConstructParams params(type_class_.init(), "application",
                                  Glib::unwrap(application), nullptr);
-    GObject *obj = g_object_new_with_properties(
+    GObject* obj = g_object_new_with_properties(
         Window::get_type(), params.n_parameters, params.parameter_names,
         params.parameter_values);
-
-    return Glib::make_refptr_for_instance(Window::wrap(obj));
+    return Window::wrap(obj);
 }
 
-void Window::set_header_bar() {
-    const auto builder =
-            Gtk::Builder::create_from_resource(projectdefinitions::getApplicationPrefix() + "ui/headerbar.xml");
-    header_bar = Glib::RefPtr<Gtk::HeaderBar>(builder->get_widget<Gtk::HeaderBar>("headerBar"));
-    if (header_bar) {
-        set_titlebar(*header_bar);
-    } else {
-        throw std::runtime_error("No \"headerBar\" object in headerbar.xml");
-    }
-}
+// Glib::RefPtr<Window> Window::create(const Glib::RefPtr<Adw::Application>& application) {
+//     const Glib::ConstructParams params(type_class_.init(), "application",
+//                                  Glib::unwrap(application), nullptr);
+//     GObject *obj = g_object_new_with_properties(
+//         get_type(), params.n_parameters, params.parameter_names,
+//         params.parameter_values);
+//
+//     return Glib::make_refptr_for_instance(wrap(obj));
+// }
+
+
+// void Window::set_header_bar() {
+//     const auto builder =
+//             Gtk::Builder::create_from_resource(projectdefinitions::getApplicationPrefix() + "ui/headerbar.xml");
+//     header_bar = Glib::RefPtr<Gtk::HeaderBar>(builder->get_widget<Gtk::HeaderBar>("headerBar"));
+//     if (header_bar) {
+//         this->set_header_bar();
+//     } else {
+//         throw std::runtime_error("No \"headerBar\" object in headerbar.xml");
+//     }
+// }
 
 
 void Window::setup_template(Gtk::TemplateWidgetSetup& s) {
-    // s.set_resource();
+    s.set_resource("ui/window.xml");
 }
 
-void Window::init_widget(Gtk::TemplateWidgetInit &i) {
+
+void Window::init_widget(Gtk::TemplateWidgetInit& i) {
     i.init_template();
 
-    i.bind_widget(color_scheme_button, "color_scheme_button");
+    // i.bind_widget(color_scheme_button, "color_scheme_button");
 
     auto manager = Adw::StyleManager::get_default();
     manager->property_system_supports_color_schemes()
@@ -62,11 +73,14 @@ void Window::init_widget(Gtk::TemplateWidgetInit &i) {
         .connect(sigc::mem_fun(*this, &Window::notify_system_supports_color_schemes_cb));
 }
 
+
 void Window::toast_undo_cb() { /* toasts_page->undo(); */ }
+
 
 char* Window::get_color_scheme_icon_name(gboolean dark) {
     return g_strdup(dark ? "light-mode-symbolic" : "dark-mode-symbolic");
 }
+
 
 void Window::color_scheme_button_clicked_cb() {
     auto manager = Adw::StyleManager::get_default();
@@ -77,6 +91,7 @@ void Window::color_scheme_button_clicked_cb() {
         manager->set_color_scheme(Adw::ColorScheme::FORCE_DARK);
     }
 }
+
 
 void Window::notify_system_supports_color_schemes_cb() {
     auto manager = Adw::StyleManager::get_default();
