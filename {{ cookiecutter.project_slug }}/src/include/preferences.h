@@ -5,13 +5,12 @@
 #include <gtkmm/checkbutton.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/dialog.h>
-
 #include <libadwaitamm.h>
 #include <libadwaitamm/private/preferenceswindow_p.h>
 #include "templatewidget.h"
 
 
-class PreferencesWindow : public Gtk::TemplateWidget<PreferencesWindow, Adw::PreferencesWindow> {
+class PreferencesWindow final : public Gtk::TemplateWidget<PreferencesWindow, Adw::PreferencesWindow> {
 
 public:
     static PreferencesWindow *create();

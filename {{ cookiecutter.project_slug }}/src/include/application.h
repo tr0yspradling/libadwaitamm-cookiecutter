@@ -9,20 +9,20 @@
 
 class Application : public Adw::Application {
 public:
-    ~Application() override;
-
     static Glib::RefPtr<Application> create();
+
+    ~Application() override = default;
 
 private:
     Application();
 
-    Window *createWindow();
+    Glib::RefPtr<Window> create_window();
 
     void on_activate() override;
 
     void on_startup() override;
 
-    void on_hide_window(Gtk::Window *window);
+    void on_hide_window(Gtk::Window* window);
 
     void on_action_preferences();
 

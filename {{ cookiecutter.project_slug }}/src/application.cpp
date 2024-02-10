@@ -2,16 +2,14 @@
 #include "application.h"
 
 Application::Application()
-: Adw::Application(projectdefinitions::getApplicationID() + ".application", Gio::Application::Flags::NONE) {}
-
-Application::~Application() {}
+: Adw::Application(projectdefinitions::getApplicationID() + ".application", Gio::Application::Flags::NON_UNIQUE) {}
 
 Glib::RefPtr<Application> Application::create() {
     return Glib::RefPtr<Application>(new Application());
 }
 
-Window *Application::createWindow() {
-    auto window = Window::create();
+Glib::RefPtr<Window> Application::create_window() {
+    auto window = Window::create(Glib::make_refptr_for_instance(this));
     add_window(*window);
     window->signal_hide().connect(sigc::bind(sigc::mem_fun(*this, &Application::on_hide_window), window));
     return window;
@@ -19,7 +17,7 @@ Window *Application::createWindow() {
 
 void Application::on_activate() {
     try {
-        auto window = createWindow();
+        auto window = create_window();
         window->present();
     } catch (const Glib::Error &ex) {
         std::cerr << "Application::on_activate(): " << ex.what() << std::endl;

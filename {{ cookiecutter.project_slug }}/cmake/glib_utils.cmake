@@ -32,6 +32,7 @@ macro(compile_schemas GSCHEMA_XML)
         endforeach()
     endif()
 
+    # set(OUTPUT_DIR ${PROJECT_BINARY_DIR/data})
     set(OUTPUT_DIR ${GENERATED_DATA_DIR})
     set(OUTPUT ${OUTPUT_DIR}/gschemas.compiled)
 
