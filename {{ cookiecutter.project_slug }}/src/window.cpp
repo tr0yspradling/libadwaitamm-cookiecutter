@@ -6,10 +6,9 @@
 
 Window::Window(Gtk::ApplicationWindow::BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &builder)
         : Gtk::ApplicationWindow(cobject),
-          builder(builder),
-          settings(nullptr),
-          headerBar(nullptr) {
-    settings = Gio::Settings::create(projectdefinitions::getApplicationID());
+          builder(builder) {
+    std::cout << "creating gsettings.\n";
+    // settings = Gio::Settings::create(projectdefinitions::getApplicationID());
 
     std::string fileName = projectdefinitions::getApplicationPrefix() + "icons/48x48/icon.png";
 
@@ -22,28 +21,28 @@ Window::Window(Gtk::ApplicationWindow::BaseObjectType *cobject, const Glib::RefP
     if (icon != nullptr) {
         set_icon_name(icon->get_icon_name());
     }
-    setHeaderBar();
+    set_header_bar();
 }
 
-Window::~Window() {}
+Window::~Window() = default;
 
 Window *Window::create() {
-    auto builder = Gtk::Builder::create_from_resource(projectdefinitions::getApplicationPrefix() + "ui/window.xml");
+    const auto builder = Gtk::Builder::create_from_resource(projectdefinitions::getApplicationPrefix() + "ui/window.xml");
 
-    auto window = Gtk::Builder::get_widget_derived<Window>(builder, "window");
+    const auto window = Gtk::Builder::get_widget_derived<Window>(builder, "window");
     if (!window) {
         throw std::runtime_error("No \"window\" object in window.xml");
     }
     return window;
 }
 
-void Window::setHeaderBar() {
-    auto builder =
+void Window::set_header_bar() {
+    const auto builder =
             Gtk::Builder::create_from_resource(projectdefinitions::getApplicationPrefix() + "ui/headerbar.xml");
-    headerBar = builder->get_widget<Gtk::HeaderBar>("headerBar");
-    if (!headerBar) {
-        throw std::runtime_error("No \"headerBar\" object in headerbar.xml");
+    header_bar = Glib::RefPtr<Gtk::HeaderBar>(builder->get_widget<Gtk::HeaderBar>("headerBar"));
+    if (header_bar) {
+        set_titlebar(*header_bar);
     } else {
-        set_titlebar(*headerBar);
+        throw std::runtime_error("No \"headerBar\" object in headerbar.xml");
     }
 }

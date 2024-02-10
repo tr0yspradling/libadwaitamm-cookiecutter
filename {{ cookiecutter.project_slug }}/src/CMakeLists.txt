@@ -3,7 +3,7 @@ FILE(GLOB UIFILES ${SOURCE_DATA_DIR}/ui/*)
 
 add_executable(
     ${PROJECT_NAME}
-    ${GENERATED_DATA_DIR}/resources.c
+    ${GENERATED_SOURCE_DIR}/resources.c
     ${SRCFILES}
 )
 
@@ -21,7 +21,7 @@ target_include_directories(
 )
 
 compile_resources(
-    ${GENERATED_DATA_DIR}/resources.c
+    ${GENERATED_SOURCE_DIR}/resources.c
     ${UIFILES}
 )
 

@@ -9,7 +9,7 @@
 
 class Application : public Adw::Application {
 public:
-    virtual ~Application() override;
+    ~Application() override;
 
     static Glib::RefPtr<Application> create();
 

@@ -34,6 +34,7 @@ macro(compile_schemas GSCHEMA_XML)
 
     set(OUTPUT_DIR ${GENERATED_DATA_DIR})
     set(OUTPUT ${OUTPUT_DIR}/gschemas.compiled)
+
     add_custom_command(
         OUTPUT ${OUTPUT}
         WORKING_DIRECTORY ${WORK_DIR}

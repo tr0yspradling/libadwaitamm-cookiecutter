@@ -16,17 +16,11 @@ PreferencesWindow* PreferencesWindow::create() {
 
 void PreferencesWindow::init_widget(Gtk::TemplateWidgetInit &i) {
   i.init_template();
-	/*
-	  s.bind_widget("subpage2");
 
-  s.bind_callback(
-      "subpage1_activated_cb",
-      Gtk::ptr_fun_to_mem_fun<&DemoPreferencesWindow::subpage1_activated>());
-  s.bind_callback(
-      "subpage2_activated_cb",
-      Gtk::ptr_fun_to_mem_fun<&DemoPreferencesWindow::subpage2_activated>());
-  s.bind_callback(
-      "return_to_preferences_cb",
-      Gtk::ptr_fun_to_mem_fun<&DemoPreferencesWindow::return_to_preferences>());
-	*/
+  // s.bind_widget("subpage2");
+  //
+  // s.bind_callback(
+  //     "subpage1_activated_cb",
+  //     Gtk::ptr_fun_to_mem_fun<&DemoPreferencesWindow::subpage1_activated>());
+
 }
